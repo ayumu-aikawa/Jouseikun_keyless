@@ -1,0 +1,18 @@
+{% extends "jsk/base.html" %}
+{% block content %}
+<h3>ファイル送受信テスト</h3>
+<div align="right">最終更新 2022/01/17 15:02</div>
+<p>送信したファイルがそのままダウンロードできれば成功</p>
+<br>
+<form action = "{% url 'jsk:develop_filedownload_result' %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="file" name = "filetest" value="" required></input>
+  <button type = "submit" class="btn btn-success" >送信</button>
+</form>
+<br>
+<br>
+<a href="ms-photos:http://127.0.0.1:8000/static/%E5%8C%97%E9%83%A8.png">北部を開く</a>
+<a href="ms-word:http://127.0.0.1:8000/static/%E5%8D%97%E9%83%A8.docx">南部を開く</a>
+
+
+{% endblock %}

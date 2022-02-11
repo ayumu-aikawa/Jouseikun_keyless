@@ -1,0 +1,11 @@
+{% extends "jsk/base.html" %}
+{% block content %}
+<h3>スキームテスト</h3>
+
+<!--登録メールアドレスが "nanbu@nan.bu" の場合にダウンロードを許可します。<br>-->
+<!--<a href="{{scheme}}:{% url 'jsk:develop_schemedownload' %}">南部を開く</a>-->
+<a href="{{scheme}}:https://yusaku-test-backet.s3.amazonaws.com/%E5%8D%97%E9%83%A8.docx?response-content-disposition=[NOT南部.docx]">南部を開く(S3使用)</a>
+<a href="ms-eyecontrolspeech:">ああああああ無理無理無理無理無理無理無理無理無理無理</a>
+<a href="{% url 'jsk:develop_schemedownload' %}" download = >南部をダウンロード</a>
+
+{% endblock %}

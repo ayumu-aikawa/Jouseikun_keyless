@@ -1,0 +1,17 @@
+{% extends 'jsk/base.html' %}
+
+{% block content %}
+
+<h1>現状使わないページ</h1>
+<form class="" method="post">
+    {% csrf_token %}
+    <ul>
+        <li>{{ form.file_name.label }}{{ form.file_name }}.{{file_extension}}</li>
+        {% comment %} <li>{{ form.tag_name.label }}{{ form.tag_name }}</li> {% endcomment %}
+        <li>この画面でフォーマットをするような気がする</li>
+    </ul>
+    <button type="submit">送信</button>
+    {% comment %} <input type="submit" class="btn btn-primary" value="submit"> {% endcomment %}
+</form>
+
+{% endblock %}

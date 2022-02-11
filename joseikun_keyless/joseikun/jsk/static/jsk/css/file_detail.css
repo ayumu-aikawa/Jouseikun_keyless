@@ -1,0 +1,111 @@
+.I_ll_be_back{
+  position:relative;
+  top:50px;
+  color: var(--color);
+  background-color: var(--I_ll_be_back);
+  text-decoration: none;
+  margin-left: 18%;
+}
+.midasi{
+  color: var(--midasi);
+  font-size: 1.5rem;
+  margin-left: 45%;
+  position: relative;
+  margin-top: 5.5%;
+  margin-bottom: 3%;
+}
+
+.data_title{
+  margin-left: 0%;
+  margin-bottom:0%;
+}
+.data{
+  margin-top: 1%;
+}
+.title_scroll{
+  overflow-y: auto;
+  height:10%;
+  width: 80%;
+  -ms-overflow-style: none;    /* IE, Edge 対応 */
+  scrollbar-width: none;       /* Firefox 対応 */
+}
+.title_scroll::-webkit-scrollbar,.title_scroll::-webkit-scrollbar-thumb,.title_scroll::-webkit-scrollbar-track {  /* Chrome, Safari 対応 */
+  border: 2px outset black;
+  border-radius: 3px;
+  background-color: rgba(22, 94, 131, 0.452);
+}
+
+/* div.time{
+  float: left;
+} */
+
+/* 
+.data{
+  position: relative;
+  left: 0%;
+  top: 2%;
+  list-style: none;
+} */
+
+.list{
+  position: relative;
+  color: var(--hover-color);
+}
+
+.tag_list{
+  position:relative;
+  width: 80%;
+  margin-bottom: 0%;
+}
+.tag{
+  top:6px;
+  display:inline-table;
+  position: relative;
+  /* text-align: left; */
+  list-style: none;/* ・消す */
+ 
+  border-radius : 0%;          /* 角丸       */
+  padding       : 6px 6px; 
+    /* 余白       */
+  background    : var(--tag-baclgrond-color);     /* 背景色     */
+  color         : var(--tag-color);     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid var(--tag-baclgrond-color);    /* 枠の指定 */
+  margin:4px 3px;
+  /* 余白設定 */
+}
+.tag a{
+  text-decoration: none;
+  color: var(--tag-color);
+}
+.time{
+  margin-top: 0%;
+  /* float: right; */
+}
+.data_upload{
+  position:relative;
+  list-style: none;
+  left: 0%;
+}
+
+.last_update{
+  position:relative;
+  list-style: none;
+  left: 0%;
+}
+@media screen and (max-width: 1280px) {
+  .midasi{
+    color: var(--midasi);
+    font-size: 1.5rem;
+    margin-left: 45%;
+    position: relative;
+    margin-top: 5.5%;
+    margin-bottom: 0%;
+  }
+  .tag_list{
+    position:relative;
+    width: 95%;
+    margin-bottom: 0%;
+  }
+}

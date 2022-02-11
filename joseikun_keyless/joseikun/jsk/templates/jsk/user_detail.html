@@ -1,0 +1,42 @@
+{% extends "jsk/base.html" %}
+{% load static %}
+{% block content %}
+
+
+<link rel ="stylesheet" href="{% static 'jsk/css/user_detail.css' %}">
+<link rel ="stylesheet" href="{% static 'jsk/css/note.css' %}"> 
+
+
+<div class="note">
+
+    <h2 class="title">ユーザー基本情報</h2>
+    <div class="user_change">
+        <a href="{% url 'jsk:user_update' user.pk %}">アカウント編集</a>
+    </div>
+        
+    <table class = "user_information">
+        <tbody>
+            <tr class="user">
+                <th >ユーザー名</th>
+                <td class="username">{{ user.username |  truncatechars:20}}
+                  
+                </td>
+            </tr>
+            <tr>
+                <th class="mail"> メールアドレス</th>
+                <td class="email">{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th class="pwd">パスワード</th>
+                <td>
+                <a class="pwd_change" href="{% url 'jsk:password_change' %}">パスワードの変更</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="user_delete">
+        <a class="delete" href="{% url 'jsk:user_delete' user.pk %}">アカウント削除</a>
+    </div>
+</div>
+{% endblock %}

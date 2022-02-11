@@ -1,0 +1,25 @@
+{% extends "jsk/base.html" %}
+{% block content %}
+{% load static %}
+
+<link rel ="stylesheet" 
+href="{% static 'jsk/css/file_update_done.css' %}">
+<link rel ="stylesheet" 
+  href="{% static 'jsk/css/note.css' %}">
+
+<td></td>
+
+<h1 class="title">ファイル編集完了</h1>
+
+<table>
+    <p>
+        <td class="file_save">
+            <!-- {{ file.file_extension }} 
+            {{ file| truncatechars:20 }} 
+            {{ file.file_name | linebreaksbr }}  -->
+             {{ file.file_name| truncatechars:20 }}.{{ file.file_extension }}
+            <br>ファイルの編集が完了しました。</p>
+        <a class="file_search" href="{% url 'jsk:file_search' %}">ファイル検索画面へ</a>
+    </td>
+    </table>
+{% endblock %}

@@ -1,0 +1,46 @@
+.title{
+  position: relative;
+  text-align: center;
+  top: 60px;
+}
+
+.file_save{
+  position: relative;
+  text-align: center;
+  font-size: 24px;
+  top: 100px;
+  left: 195%;
+}
+
+.file_search{
+  text-align: center;
+  position: relative;
+  font-size: 24px;
+  top: 30px;
+}
+
+@media screen and (max-width: 1280px) {
+.title{
+  font-size: 35px;
+  position: relative;
+  left: 450px;
+  top: 60px;
+}
+
+.file_save{
+  position: relative;
+  text-align: center;
+  font-size: 24px;
+  top: 100px;
+  left: 400px;
+}
+
+.file_search{
+  text-align: center;
+  position: relative;
+  font-size: 24px;
+  right: 60px; 
+  top: 30px;
+}
+}
+

@@ -1,0 +1,85 @@
+<title>{{title}}｜情整君。</title>
+{% block content %}
+{% load static %}
+
+<link rel ="stylesheet" 
+        href="{% static 'jsk/css/login.css' %}">
+
+<link rel ="stylesheet" 
+        href="{% static 'jsk/css/back_collar.css' %}">
+
+<hr>
+
+<h1 class="kuhaku"></h1>
+<h1 class="login">ログイン</h1>
+
+
+<div>
+    <!-- 左側、ログインエリア -->
+    <div>
+        <div>
+            <form class="fo" action="{% url 'jsk:login' %}" method="POST">
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <div>
+                    {% for error in form.non_field_errors %}
+                        <p{% if forloop.last %} class="mb-0"{% endif %}>正しいメールアドレスとパスワードを入力してください。<br>どちらのフィールドも大文字と小文字は区別されます。</p>
+                    {% endfor %}
+                    </div>
+                {% endif %}
+                <table>
+                {% for field in form %}
+                <tr>
+                  <td class="login_text">
+                      <label class="lab" for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+                  </td>
+                  <td class="login_text2">
+                    {{ field }}
+                    {{ field.errors }}
+                  </td>
+                </tr>
+                
+                {% endfor %}
+                <tr><td></td>
+                    <td>
+                        <button class="but1" type="submit">ログイン</button>
+                        <input type="hidden" name="next" value="{{ next }}" />
+
+                    </td>
+                </tr>
+
+                <tr><td></td>
+                    <td>
+                        <div class="card col-md-6">
+                            <div class="card-body">
+                                <a class="top_link" href="{% url 'jsk:top' %}">トップ画面へ</a>
+                            </div>
+                    </td>
+                </tr>
+                        </div>
+                        <tr><td></td>
+                    <td>
+                        <!-- 中央、会員登録エリア -->
+                        <div class="card col-md-6">
+                            <div class="card-body">
+                                <a class="password" href="{% url 'jsk:password_reset' %}">パスワードを忘れた方</a>
+                            </div>
+                        </div><!-- 中央、会員登録エリアおわり -->
+                    </td>
+                </tr>
+                <tr><td></td>
+                    <td>
+                        <div class="card col-md-6">
+                            <div class="card-body">
+                                <a class="acanto" href="{% url 'jsk:user_create_input' %}">アカウント登録が<br>まだの方はコチラへ</a>
+                            </div>
+                        </div>
+                            </td>
+                        </tr>
+                </table>
+            </form>
+        </div>
+    </div><!-- 左側、ログインエリアおわり -->
+    
+</div>
+{% endblock %}

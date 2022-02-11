@@ -1,0 +1,45 @@
+body{
+  background-color: var(--background-color);
+}
+
+.kuhaku{
+  margin-bottom: 80px;
+}
+
+.title{
+  text-align: center;
+  margin-bottom: 100px;
+  font-size: 34px;
+  margin-left: auto;
+  font-family: sans-serif;
+  color: var(--text_collar);
+
+}
+
+.text{
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 80px;
+}
+
+
+.but{
+  margin-bottom: 200px;
+  margin-left: 530px;
+  border: 1px solid rgb(123, 122, 122);
+  background: #f1e767;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fdfbfb), to(#ebedee));
+  background: -webkit-linear-gradient(top, #fdfbfb 0%, #ebedee 100%);
+  background: linear-gradient(to bottom, #fdfbfb 0%, #ebedee 100%);
+  -webkit-box-shadow: inset 1px 1px 1px #fff;
+  box-shadow: inset 1px 1px 1px #fff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 2rem;
+}
+
+.but:hover {
+  background: -webkit-gradient(linear, left bottom, left top, from(#fdfbfb), to(#ebedee));
+  background: -webkit-linear-gradient(bottom, #fdfbfb 0%, #ebedee 100%);
+  background: linear-gradient(to top, #fdfbfb 0%, #ebedee 100%);
+}
+

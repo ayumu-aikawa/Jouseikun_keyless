@@ -1,0 +1,32 @@
+<title>{{title}}｜情整君。</title>
+{% block content %}
+{% load static %}
+
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>jsk</title>
+
+    <link rel ="stylesheet" 
+        href="{% static 'jsk/css/user_create_done.css' %}
+        ">
+    <link rel ="stylesheet" 
+        href="{% static 'jsk/css/back_collar.css' %}">
+</head>
+
+<hr class="kuhaku">
+
+
+<h1 class="title">情整君。の仮登録完了</h1>
+
+<table>
+    <p class="text">
+        会員登録確認メールを送信しました。<br>
+        確認メールに記載されているリンクから本登録を行ってください。
+    </p>
+    
+    <button class="but"  type="button" onclick=location.href="{% url 'jsk:login' %}">ログイン画面へ</button>
+</table>
+    
+{% endblock %}

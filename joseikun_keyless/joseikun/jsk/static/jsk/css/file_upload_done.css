@@ -1,0 +1,51 @@
+.kuhaku{
+  position: relative;
+  bottom: 100px;
+  
+}
+
+.title{
+  position: relative;
+  text-align: center;
+  position: center;
+  margin-bottom: 100px;
+}
+
+.text{
+  position: relative;
+  text-align: center;
+  position: center;
+  margin-bottom: 50px;
+  font-size: 24px;
+
+}
+.link_file_search{
+  position: relative;
+  font-size: 24px;
+  top: 50px;
+  margin-left: 28%;
+}
+
+.link_tag{
+  position: relative;
+  font-size: 24px;
+  top: 13px;
+  margin-left: 56%;
+}
+
+@media screen and (max-width: 1280px) {
+
+  .link_file_search{
+    position: relative;
+    font-size: 24px;
+    left: 300px;
+    top: 50px
+  }
+  
+  .link_tag{
+    position: relative;
+    font-size: 24px;
+    left: 700px;
+    top: 13px;
+}
+}

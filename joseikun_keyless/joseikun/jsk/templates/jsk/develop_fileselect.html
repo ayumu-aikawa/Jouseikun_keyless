@@ -1,0 +1,26 @@
+{% extends "jsk/base.html" %}
+{% block content %}
+<h3>ファイル送信テスト</h3>
+<div align="right">最終更新 2022/01/17 12:25</div>
+<br>
+<h4>文書ファイル送信</h4>
+<p>対応形式 .txt .docx</p>
+
+<form action = "{% url 'jsk:develop_fileselect_result' %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="file" name = "filetest" value="" accept=".txt,.docx,image/*" required></input>
+  <button type = "submit" class="btn btn-success" >送信</button>
+</form>
+<br>
+<br>
+<h4>画像ファイル送信</h4>
+<p>対応形式 色々試してみて</p>
+
+<form action = "{% url 'jsk:develop_fileselect_result2' %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="file" name = "filetest" value="" accept="image/*" required></input>
+  <button type = "submit" class="btn btn-success" >送信</button>
+</form>
+
+<a href="{% url 'jsk:develop_filedownload' %}">ファイル送受信テスト</a>
+{% endblock %}

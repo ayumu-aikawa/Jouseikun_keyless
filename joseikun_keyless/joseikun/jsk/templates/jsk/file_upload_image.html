@@ -1,0 +1,81 @@
+{% extends "jsk/base.html" %}
+{% block content %}
+{% load static %}
+
+  <link rel ="stylesheet" href="{% static 'jsk/css/file_upload_image.css' %}">
+<link rel ="stylesheet" href="{% static 'jsk/css/note.css' %}">
+<div class="note">
+<!-- </div> -->
+  
+<br>
+
+  <h2 class="midasi">画像ファイル送信</h2>
+  <p class="txt">対応形式 画像ファイル全般</p>
+
+  <form action="" method="POST" enctype="multipart/form-data">
+    <div class="file">
+      {% csrf_token %}
+      {{ form.as_p }}
+    <div>
+      <input type="checkbox" class = "translate"  id="translate" name="translate" value="translate" onchange="dispFunc(this.value)">
+      <label  class = "translate"   for="translate">翻訳しますか？</label>
+    </div>
+    <table  id="trans_data">
+      <tr>
+        <td>翻訳元言語</td>
+        <td><select id="before_langage" name="before_langage"></select></td>
+        <td></td>
+        <td>翻訳先言語</td>
+        <td><select id="after_langage" name="after_langage"></select></td>
+      </tr>
+      </table>
+    <button class = "trans_button" type="submit">送信</button>
+  </div>
+  </form>
+</div>
+<script>
+  var BeforeCodeArray = {{ before_code|safe }};
+  var BeforeNameArray = {{ before_name|safe }};
+  var AfterCodeArray = {{ after_code|safe }};
+  var AfterNameArray = {{ after_name|safe }};
+  window.onload = function(){
+    //select要素を取得する
+    const before = document.getElementById('before_langage');
+    for (var i=0; i < BeforeCodeArray.length; i++){
+      //option要素を新しく作る
+      const option = document.createElement('option');
+      //option要素にvalueと表示名を設定
+      option.value = BeforeCodeArray[i];
+      option.textContent = BeforeNameArray[i];
+      //select要素にoption要素を追加する
+      before.appendChild(option)
+    }
+
+    const after = document.getElementById('after_langage');
+    for (var i=0; i < AfterCodeArray.length; i++){
+      //option要素を新しく作る
+      const option = document.createElement('option');
+      //option要素にvalueと表示名を設定
+      option.value = AfterCodeArray[i];
+      option.textContent = AfterNameArray[i];
+      //select要素にoption要素を追加する
+      after.appendChild(option)
+    }
+  }
+
+  //初期表示は非表示
+  document.getElementById("trans_data").style.visibility ="hidden";
+  function dispFunc(value) {
+    const trans_data = document.getElementById("trans_data");
+    const trans_check = document.getElementById("translate");
+    if(trans_check.checked){
+      // blockで表示
+      trans_data.style.visibility ="visible";
+    }else{
+      // noneで非表示
+      trans_data.style.visibility ="hidden";
+    }
+  }
+</script>
+
+{% endblock %}

@@ -1,0 +1,152 @@
+/* @media only screen and (max-width: 1920px) { */
+/* デスクトップ */
+
+
+.I_ll_be_back{
+  color: white;
+  position: relative;
+  background-color: var(--I_ll_be_back);
+  text-decoration: none;
+  font-size: 1.3em;
+  margin-left: 15%;
+  top:45px;
+}
+.save{
+  position: relative;
+  background:  var(--button-color);
+  font-size: 1.3em;
+  margin-top: 0.5%;
+  margin-left:80%;
+  margin-bottom: 2%;
+} 
+.title{
+  color: var(--midasi);
+  font-size: 1.5rem;
+  margin-left: 20%;
+  position: relative;
+  margin-bottom: 2.5%;
+}
+
+.title_update{
+  position: relative;
+  font-size: 1.3em;
+  margin-left: 12%;
+}
+.error{
+  position: absolute;
+  top:18px;
+  color:var(--error);
+}
+.tag_update{
+  position: relative;
+  width: 25%;
+  right: 140px;
+  top: 42px;
+}
+.tag_box{
+  position: relative;
+  margin-left: 70%;
+  bottom: 90px;
+  z-index: 2  ;
+}
+.tag_save{
+  background: var(--button-color);
+}
+#tag_list{
+  /* margin-left: 6%; */
+  width: 97%;
+  bottom: 15px;
+  position: relative;
+  /* justify-content: space-between; */
+  /* display:  inline-block; */
+}
+
+.tag{
+  /* text-align: left; */
+  list-style: none;/* ・消す */
+  float: left;/* 横並び */
+  border-radius : 0%;          /* 角丸       */
+  padding       :   12px 7px;   /* 余白       */
+  background    : var(--tag-baclgrond-color);     /* 背景色     */
+  color         : var(--tag-color);     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid var(--tag-baclgrond-color);    /* 枠の指定 */
+  margin:3px 6px/* 余白設定 */
+}
+/* .tag:nth-child(3n+1)::after{
+  margin-left: 20px;
+  content: "\A" ;
+  white-space: pre;
+} */
+.delete_tag{
+  text-align:center;
+  display:inline;
+  border: none;  /* 枠線を消す */
+  outline: none; /* クリックしたときに表示される枠線を消す */
+  background: transparent; /* 背景の灰色を消す */
+  border-radius : 100%;          /* 角丸       */
+}
+.delete_tag:hover{
+  background: var(--tag-delete);
+}
+
+.none{
+  display: none;
+}
+/* } */
+
+@media only screen and (max-width: 1280px) {
+
+  .title{
+    color: var(--midasi);
+    font-size: 1.5rem;
+    margin-left: 20%;
+    position: relative;
+    top: 12px;
+    margin-bottom: 2.5%;
+  } 
+  .save{
+    position: relative;
+    background:  var(--button-color);
+    font-size: 1.3em;
+    margin-top: 0.8%;
+    margin-left:80%;
+    margin-bottom: 2%;
+  } 
+  .title_update{
+    position: relative;
+    font-size: 1.3em;
+    margin-left: 12%;
+    top:24px;
+  }
+  .tag_update{
+  position: relative;
+  width: 25%;
+  right: 140px;
+  top: 42px;
+  }
+  .tag_box{
+  position: relative;
+  margin-left: 70%;
+  bottom: 60px;
+  z-index: 2  ;
+  }
+  .tag_update{
+    position: relative;
+    width: 40%;
+    right: 140px;
+    top: 42px;
+  }
+  #tag_list{
+    margin-left: 0%;
+    width: 97%;
+    bottom: 15px;
+    position: relative;
+    /* justify-content: space-between; */
+    /* display:  inline-block; */
+  }
+  
+}
+
+

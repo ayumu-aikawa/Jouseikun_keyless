@@ -1,0 +1,63 @@
+<title>{{title}}｜情整君。</title>
+{% block content %}
+{% load static %}
+
+<link rel ="stylesheet" 
+  href="{% static 'jsk/css/user_create_input.css' %}">
+
+  <link rel ="stylesheet" 
+        href="{% static 'jsk/css/back_collar.css' %}">
+  <hr class="kuhaku">
+
+<h1></h1>
+
+<form class="fo1" action="{% url 'jsk:user_create_confirm' %}" method="POST">
+    {{ form.non_field_errors }}
+    <table>
+        <tr>
+            <th><h4 class="title">アカウント登録</h4></th>
+        </tr>
+        
+    {% for field in form %}
+      <tr>
+        <td class="create_text">
+          <label class="lab" for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+        </td>
+        <td>
+          {{ field }}
+          {{ field.errors }}
+        </td>
+        {% endfor %}
+        {% csrf_token %}
+      </tr>
+      <tr>
+        <td></td>
+        <td><button class="but" type="submit">確認</button></td>
+      </tr>
+    </table>
+     <tr>
+       <td></td>
+       <div class="card col-md-6">
+        <div class="card-body">
+         <a class="top_link" href="{% url 'jsk:top' %}">トップ画面へ</a>
+       </div>
+     </tr>
+</form>
+
+
+<!--
+<p>情整君。の会員情報入力画面</p>
+<form action="{% url 'jsk:user_create_confirm' %}" method="POST">
+    {{ form.non_field_errors }}
+    {% for field in form %}
+    <div>
+        <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+        {{ field }}
+        {{ field.errors }}
+    </div>
+    {% endfor %}
+    {% csrf_token %}
+    <button type="submit">送信</button>
+</form>
+-->
+{% endblock %}

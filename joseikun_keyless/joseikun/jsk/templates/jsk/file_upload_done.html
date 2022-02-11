@@ -1,0 +1,20 @@
+{% extends "jsk/base.html" %}
+{% block content %}
+{% load static %}
+
+<td class="kuhaku"></td>
+
+<link rel ="stylesheet" 
+href="{% static 'jsk/css/file_upload_done.css' %}">
+
+
+<h1 class="title">アップロード完了</h1>
+
+<table>
+    <p class="text">{{ file.file_name }}.{{ file.file_extension }}ファイルのアップロードが完了しました。</p>
+    <a class="link_file_search"  href="{% url 'jsk:file_search' %}">ファイル検索画面へ</a>
+    <br>
+    <a class="link_tag" href="{% url 'jsk:file_update_tags' user_pk file.id %}">ファイルの編集画面へ</a>
+</table>
+
+{% endblock %}

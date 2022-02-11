@@ -1,0 +1,101 @@
+.kuhaku{
+  height: 100px;
+}
+
+.title{
+  position: relative;
+  font-size: 2rem;
+  margin-left: 40%;
+}
+
+.but1 {
+  margin-top:5%;
+  font-size: 3rem;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  padding: 3px;
+  background: #f7f7f7;
+  border: 0;
+  border-left: solid 6px #58ad5a;
+  color: #58ad5a;
+  font-weight: bold;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.22);
+  margin-left: 30%;
+}
+
+
+
+.but1:hover {
+  background-color: #93ca76; 
+  color: black;
+  background: -webkit-gradient(linear, left bottom, left top, from(#93ca76), to(#93ca76));
+  background: -webkit-linear-gradient(bottom, #93ca76 0%, #93ca76 100%);
+  background: linear-gradient(to top, #93ca76 0%, white 100%);
+  transform: translateY(2);
+}
+
+.but2{
+  margin-left: 26%;
+  font-size: 3rem;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  padding: 3px;
+  background: #f7f7f7;
+  border: 0;
+  border-left: solid 6px #58ad5a;
+  color: #58ad5a;
+  font-weight: bold;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.22);
+}
+
+.but2:hover {
+  background-color: #93ca76; 
+  color: black;
+  background: -webkit-gradient(linear, left bottom, left top, from(#93ca76), to(#93ca76));
+  background: -webkit-linear-gradient(bottom, #93ca76 0%, #93ca76 100%);
+  background: linear-gradient(to top, #93ca76 0%, white 100%);
+  transform: translateY(2);
+}
+
+.error{
+  position: absolute;
+  color: var(--error);
+  top:30%;
+  left: 40%;
+}
+
+@media screen and (max-width: 1280px) {
+  .but1 {
+    margin-top:5%;
+    font-size: 3rem;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    padding: 3px;
+    background: #f7f7f7;
+    border: 0;
+    border-left: solid 6px #58ad5a;
+    color: #58ad5a;
+    font-weight: bold;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.22);
+    margin-left: 30%;
+    bottom: 7px;
+  }
+  .but2{
+    margin-left: 26%;
+    font-size: 3rem;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    padding: 3px;
+    background: #f7f7f7;
+    border: 0;
+    border-left: solid 6px #58ad5a;
+    color: #58ad5a;
+    font-weight: bold;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.22);
+    bottom: 7px;
+  }
+}

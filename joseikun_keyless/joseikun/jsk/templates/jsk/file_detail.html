@@ -1,0 +1,39 @@
+{% extends "jsk/base.html" %}
+{% block content %}
+{% load static %}
+
+<link rel ="stylesheet" 
+  href="{% static 'jsk/css/file_detail.css' %}">
+  <link rel ="stylesheet" 
+  href="{% static 'jsk/css/note.css' %}">
+
+  <div class="note">
+    <a class = "I_ll_be_back" href="{% url 'jsk:file_search' %}">◀検索ページへ戻る</a>
+    <h2 class = "midasi">ファイルの詳細</h2>
+    <!-- <div class="list"> -->
+  
+      <ul class = "data_title"><b>ファイルの名前</b>
+        <div class="title_scroll">
+          <li class = "data">{{ file.file_name }}.{{ file.file_extension }}</li>
+        </div>
+          </ul>
+      <ul class="tag_list"><b>ファイルのタグ<!-- （ただの文字列） --></b>
+        <br>
+          {% if not tag_list  %}
+            <li class="tag">タグがありません</li>
+          {% else %}
+            {% for tag in tag_list %}
+              <li class = "tag"><a href="{% url 'jsk:file_search' %}?search_name={{ tag }}&search=tag">{{ tag }}</a></li>
+            {% endfor %}
+          {% endif %}
+      </ul>
+        <ul  class = "data_upload"><b>アップロード日時</b>
+          <li class = "data">{{ file.update_dt }}</li>  
+        </ul> 
+        <ul class = "last_update"><b>最終更新日時</b>
+          <li class = "data">{{ file.last_viewed_dt }}</li>
+        </ul>
+  </div>
+
+
+{% endblock %}

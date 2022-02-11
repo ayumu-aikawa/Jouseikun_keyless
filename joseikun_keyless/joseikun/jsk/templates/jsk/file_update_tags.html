@@ -1,0 +1,142 @@
+{% extends "jsk/base.html" %}
+{% block content %}
+{% load static %}
+<link rel ="stylesheet"href="{% static 'jsk/css/file_update_tags.css' %}">
+<link rel ="stylesheet"href="{% static 'jsk/css/note.css' %}">
+<div class="note">
+    <a href="{{request.META.HTTP_REFERER}}"><div class="triangle"></div></a>
+    
+    <a id = "I_ll_be_back" class ="I_ll_be_back" href="{% url 'jsk:file_search' %}">◀検索ページへ戻る</a>
+    <form method="post" class = "save_form">
+    <input class="save" id = "save" type="submit" value="保存">
+    <h1 class="title">ファイルの編集画面</h1>
+        <div class="title_update">
+            {% csrf_token %}
+            {{ form.file_name.label }}:{{ form.file_name }}
+            <div class="error">
+                {{ form.file_name.errors }}
+            </div>
+        </div>
+        <div id="input_error"></div>
+        <div class="tag_box">
+        <div class = "tag_update">
+            <div  id="tag_length"></div>
+        </div>
+            <input type="text" name='in_tag' id="input_tag" placeholder = "1文字以上～20文字以内"/>
+            <input class = "tag_save" type="button" value="追加" onclick="clickBtn1()" />
+        </div>
+        <ul id="tag_list"></ul>
+    <div class = "none">
+        {% comment %} <div hidden> {% endcomment %}
+            <p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+            <p>ここは後に隠す</p>
+            {{ form.tag_name.label }}:{{ form.tag_name }}
+            <p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+        {% comment %} </div> {% endcomment %}
+    </div>
+    </form>
+</div>
+<script>
+
+
+    // ファイルのタグリストを取得
+    var TagArray = {{ tag_list|safe }};
+    var FileName = {{ file_name|safe }};
+    var FileNameString = "";
+    // タグ削除ボタン押下時の処理
+    function deleteTagList(num){
+        TagArray.splice(num, 1);
+        createTagList();
+    }
+    // 表示させるタグリストの処理
+    function createTagList(){
+        // 一度タグリストの子要素をすべて削除
+        let tag_parent = document.getElementById('tag_list');
+        while (tag_parent.lastChild) {
+            tag_parent.removeChild(tag_parent.lastChild);
+        }
+        // 配列からタグリストを作成する
+        for (var i = 0; i < TagArray.length; i++) {
+            // liタグの作成
+            var listTag = document.createElement('li');
+            // 表示するタグの値を取得
+            listTag.textContent = TagArray[i];
+            // タグのidを指定
+            listTag.id = "tag_" + i;
+            // クラスの指定
+            listTag.className = "tag";
+            // id=tag_list の子要素として追加
+            document.getElementById('tag_list').appendChild(listTag);
+
+            // 削除ボタンを作成
+            // inputタグの作成
+            var delete_btn = document.createElement('input');
+            // inputタグの値をいろいろ指定
+            delete_btn.setAttribute('type', 'button');
+            delete_btn.setAttribute('id', 'tag_delete_btn');
+            delete_btn.setAttribute('name', i);
+            delete_btn.setAttribute('value', '×');
+            delete_btn.title = "削除"
+            delete_btn.className = "delete_tag";
+            delete_btn.onclick = function() {
+                deleteTagList(this.name);
+            }
+            // さっき追加したliタグの子要素として追加
+            document.getElementById('tag_' + i).appendChild(delete_btn);
+        }
+        // Djangoへ送る用のformに配列を追加
+        document.getElementById("id_tag_name").value = TagArray;
+        document.getElementById('tag_length').innerHTML = "<p>現在のタグ数：" + TagArray.length + "</p>";
+    }
+    // ページ読み込み時の処理
+    window.onload = function(){
+        createTagList();
+        // pタグの作成
+        document.getElementById('tag_length').innerHTML = "<p>現在のタグ数：" + TagArray.length + "</p>";
+        var FileNameString = FileName[0];
+        document.getElementById('id_file_name').value = FileNameString;
+          //ページを離れる直前にメッセージを表示する
+        window.onbeforeunload = function(){
+            return "OK?";
+  }
+    }
+    // タグの追加の処理
+    function clickBtn1(){
+        // 入力蘭の値を取得
+        const text_box = document.getElementById("input_tag");
+        const text = text_box.value;
+        // バリデーション的な奴
+        if (!(0 < text.length && text.length <= 20)) {
+            // document.getElementById('input_error').innerHTML = "<p>ERROR:0字～20字で入力してください。</p>";
+            alert("ERROR:1字～20字で入力してください。");
+        } else if (TagArray.length >= 12) {
+            // document.getElementById('input_error').innerHTML = "<p>ERROR:タグは20個まで指定可能です。</p>";
+            alert("ERROR:タグは12個まで指定可能です。");
+        } else {
+            if (text.indexOf(";") == -1 && text.indexOf("；") == -1){
+                // 入力された値を配列に追加
+                TagArray.push(text);
+                // 表示するタグの作成
+                createTagList();
+                // 入力欄を空にする
+                text_box.value = "";
+                document.getElementById('input_error').innerHTML = "";
+            } else {
+                // document.getElementById('input_error').innerHTML = "<p>ERROR:';'はタグに使用することはできません。</p>";
+                alert("ERROR:';'はタグに使用することはできません。");
+            }
+        }
+    }
+// エンターキー無効
+document.onkeypress = function(e) {
+  if (e.key === 'Enter') {
+    return false;
+  }
+}
+document.getElementById("save").onclick = function(){
+    window.onbeforeunload = null;  // 関数を削除
+}
+
+</script>
+
+{% endblock %}

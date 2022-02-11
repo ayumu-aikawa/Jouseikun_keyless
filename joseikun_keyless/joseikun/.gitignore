@@ -1,0 +1,11 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+/download
+/text_template
+/media
+
+jsk/migrations
+# 仮登録時のメール送信時に作られます
+/sent_emails

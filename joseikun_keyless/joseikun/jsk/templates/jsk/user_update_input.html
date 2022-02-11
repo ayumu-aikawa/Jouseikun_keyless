@@ -1,0 +1,43 @@
+{% extends "jsk/base.html" %}
+{% block content %}
+{% load static %}
+
+<link rel ="stylesheet" 
+  href="{% static 'jsk/css/note.css' %}">
+
+
+<link rel ="stylesheet" 
+  href="{% static 'jsk/css/user_update_input.css' %}">
+
+
+<!-- <p>情整君。の編集画面</p> -->
+
+
+<div class="note">
+ 
+    <h1 class="title">ユーザーの編集画面 </h1>
+    <form class="for" action="" method="POST">
+        {{ form.non_field_errors }}
+        <table class="text_table">
+            <tbody>
+                {% for field in form %}
+                    <tr>
+                        <th><label  for="{{ field.id_for_label }}">
+                        <th class="nickname">
+                         {{ field.label }}
+                        {{ file| truncatechars:20 }}
+                        </th>
+                          </label></th>
+                        <td class="text_box">{{ field }} {{ field.errors }}
+                        
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button class="but" type="submit">確認</button>
+            {% csrf_token %}
+        </form>
+    </div>
+{% endblock %}

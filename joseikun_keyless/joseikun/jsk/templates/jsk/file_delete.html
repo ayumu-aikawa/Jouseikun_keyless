@@ -1,0 +1,24 @@
+{% extends "jsk/base.html" %}
+{% block content %}
+
+
+<h1>現状、このページは表示されません！</h1>
+<h3>DeleteView</h3>
+<p>ファイルのID<b>{{ file.id }}</b></p>
+<p>ユーザーのID<b>{{ file.user_id }}</b></p>
+<p>これがmodel.pyで指定してる<b>{{ file }}</b></p>
+<p>ファイルの名前<b>{{ file.file_name }}</b></p>
+<p>ファイルの拡張子<b>{{ file.file_extension }}</b></p>
+<p>ファイルのタグ（ただの文字列）<b>{{ file.tag_name }}</b></p>
+<p>更新日時<b>{{ file.update_dt }}</b></p>
+<p>最終閲覧日時<b>{{ file.last_viewed_dt }}</b></p>
+
+<form method="post">
+    {% csrf_token %}
+    <p>{{ file.file_name }}.{{ file.file_extension }}を削除しますか？</p>
+    <input type="submit" value="削除する">
+</form>
+
+<a href="{{request.META.HTTP_REFERER}}">戻る</a>
+
+{% endblock %}

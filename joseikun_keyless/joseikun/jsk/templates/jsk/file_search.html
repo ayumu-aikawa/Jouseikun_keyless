@@ -1,0 +1,121 @@
+{% extends "jsk/base.html" %}
+{% load static %}
+{% load tag_library %}
+{% block content %}
+<link rel ="stylesheet"href="{% static 'jsk/css/file_search.css' %}">
+<h3>
+{% if search.is %}
+「{{ search.name }}」で{{ search.method }}：{{ count_result }}
+{% else %}
+<br>
+ファイル一覧を表示
+{% endif %}
+</h3>
+{% comment %} 
+<form action="" method="get">
+    request.GET.検索用語 でデータを送る 
+    <input name="file_name" value="{{ request.GET.file_name }}" type="text">
+    <button type="submit">検索する</button>
+</form>
+{% endcomment %}
+<table border="1" class = "file_table">
+<tr>
+    <!-- <td>ID</td> -->
+    <td>ファイルの名前</td>
+    <!-- <td>ファイル名</td>
+    <td>拡張子</td>
+    <td>S3ファイル名</td>
+    <td>タグ</td>
+    <td>更新日時</td> -->
+    <td>最終更新日時</td>
+    <!-- <td>詳細</td> -->
+</tr>
+
+{% for file in file_list %}
+<tr class = "table_file_django">
+    <td class = "fname"><div title="クリックしてダウンロード">
+    <!-- {% static 'jsk/img/' as baseUrl %} -->
+    {% with 'jsk/img/'|add:file.file_extension|add:'.png' as image_static %}
+    <a class = "file_dl" href="{% url 'jsk:file_download' %}?param={{file.pk}}">
+        <input class = "file_image" type = "image" src = "{% static image_static %}" >
+        <span data-text="{{ file }}をダウンロード">{{ file| truncatechars:20 }}</span></a>
+        {% endwith %}
+    </div>
+    </td>
+    <td class="last_file">{{ file.last_viewed_dt }}</td>
+    <td class= "drop_button">
+        <li class = "nav-item dropdown">
+            <a class = "nav-link">
+                <span></span>
+            </a>
+            <nav class = "submenu">
+                <ul clss = "submenu-items">
+                    <li class = "submenu-item"><a href = "{% url 'jsk:file_download' %}?param={{file.pk}}"  class = "submenu-link">ＤＬ</a></li>
+                    {% if file.pic_flag %}
+                        <li class = "submenu-item"><a href = "{% url 'jsk:file_download_pic' %}?param={{file.pk}}"  class = "submenu-link">元画像ＤＬ</a></li>
+                    {% endif %}
+                    <li class="submenu-item"><a href="{% url 'jsk:file_detail' file.user_id file.pk %}" class="submenu-link">詳細</a></li>
+                    <li class="submenu-item"><a href="{% url 'jsk:file_update_tags' file.user_id file.pk %}" class="submenu-link">編集</a></li>
+                    <li class="submenu-item"><a href="{% url 'jsk:text_to_tags' file.user_id file.pk %}" class="submenu-link">タグの生成</a></li>
+                    <!-- <li class="submenu-item" ><button class="submenu-link" onclick='popup("{{ file }}","{% url 'jsk:file_delete'%}")'>削除</button></li> -->
+                    <li class="submenu-item" ><button class="submenu-link" onclick='popup("{{ file }}","?param={{ file.pk }}")'>削除</button></li>
+                </ul>
+            </nav>
+        </li>
+    </td>
+    <td> <butto class = tag_button onclick="tag_display('{{forloop.counter}}')">タグ表示</button></td>
+</tr>
+<tr class = tag_table>
+    <td colspan="4">
+            <!-- <form class = "find" action="{% url 'jsk:file_search' %}" method="get"> -->
+            {% for tag in file.tag_name %}
+            <div title="クリックして検索">
+            <li class="tag"><a href="{% url 'jsk:file_search' %}?search_name={{ tag }}&search=tag">{{ tag }}</a></li>
+            </div>
+            {% endfor %}
+            <!-- </form> -->
+    </td>
+</tr>
+<!-- {{forloop.counter}} -->
+
+{% endfor %}
+</table>
+<!-- <p id = "pop"></p> -->
+
+<nav aria-label="ページネーション">
+    <div class="pager">
+        <ul class="pagination">
+
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+        <a class="page-link" href="?search_name={{ search_form.search_name.value }}&search={{ search_form.search.value }}&page={{ page_obj.previous_page_number }}" aria-label="前へ">
+        <span aria-hidden="true">&laquo;</span>
+        </a>
+        </li>
+        {% endif %}
+        {% for page_num in page_obj.paginator.page_range %} 
+        {% if page_num == page_obj.number %}
+        <li class="page-item active">
+        <a class="page-link" href="?search_name={{ search_form.search_name.value }}&search={{ search_form.search.value }}&page={{ page_num }}"><span>{{ page_num }}</span></a>
+        </li>
+        {% else %}
+        <li class="page-item">
+        <a class="page-link" href="?search_name={{ search_form.search_name.value }}&search={{ search_form.search.value }}&page={{ page_num }}"><span>{{ page_num }}</span></a>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+        <a class="page-link" href="?search_name={{ search_form.search_name.value }}&search={{ search_form.search.value }}&page={{ page_obj.next_page_number }}" aria-label="次へ">
+        <span aria-hidden="true">&raquo;</span>
+        </a>
+        </li>
+        {% endif %}
+
+        </ul>
+    </div>
+</nav>
+
+<script src="{% static 'jsk/js/dropdown.js' %}"></script>
+{% endblock %}

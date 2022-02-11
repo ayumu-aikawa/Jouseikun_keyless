@@ -1,0 +1,90 @@
+.title{
+  position: relative;
+  text-align: left;
+  font-family: sans-serif;
+  font-size: 1.5rem;
+  color:black;
+  margin-left: 20%;
+  top:85px;
+  margin-bottom: 7.5%;
+  font-family: sans-serif
+}
+
+.for{
+  font-size: 1.3rem;
+  position: relative;
+  margin-left: 30%;
+  text-align: center;
+  font-family: sans-serif;
+  top: 25px;
+}
+
+.text_table{
+   position: relative;
+    text-align: center;
+    border-collapse: separate;
+    border-spacing: 44px;
+    right: 30px;
+}
+
+.nickname{
+  position: relative;
+  text-align: center;
+  bottom: 30px;
+}
+
+.text_box{
+  position: relative;
+  bottom: 34px;
+}
+
+
+
+
+
+.but {
+  bottom: 80px;
+  margin-left: 5%;
+  font-size: 22px;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  padding: 3px;
+  background: #f7f7f7;
+  border: 0;
+  border-left: solid 6px #58ad5a;
+  color: #58ad5a;
+  font-weight: bold;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.22);
+}
+
+.but:hover {
+  background-color: #93ca76; 
+  color: black;
+  background: -webkit-gradient(linear, left bottom, left top, from(#93ca76), to(#93ca76));
+  background: -webkit-linear-gradient(bottom, #93ca76 0%, #93ca76 100%);
+  background: linear-gradient(to top, #93ca76 0%, white 100%);
+  transform: translateY(2);
+}
+
+/* .user_delete_button{
+  
+} */
+@media screen and (max-width: 1280px) {
+  
+.but {
+  bottom: 75px;
+  margin-left: 5%;
+  font-size: 22px;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  padding: 3px;
+  background: #f7f7f7;
+  border: 0;
+  border-left: solid 6px #58ad5a;
+  color: #58ad5a;
+  font-weight: bold;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.22);
+}
+}

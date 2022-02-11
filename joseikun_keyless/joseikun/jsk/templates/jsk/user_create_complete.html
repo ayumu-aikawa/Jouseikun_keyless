@@ -1,0 +1,16 @@
+<title>{{title}}｜情整君。</title>
+{% block content %}
+{% load static %}
+
+<link rel ="stylesheet" 
+        href="{% static 'jsk/css/user_create_complete.css' %}">
+<h1>情整君。の本登録完了</h1>
+
+<p>
+    本登録が完了しました。<br>
+    登録されたメールアドレスとパスワードでログインしてください。<br>
+</p>
+
+<button class="sz"  type="sz"  onclick=location.href="{% url 'jsk:login' %}">ログイン画面へ</button>
+
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "jsk/base.html" %}
+{% block content %}
+{% load static %}
+
+<!-- <link rel ="stylesheet" 
+  href="{% static 'jsk/css/file_upload_text.css' %}"> -->
+<link rel="stylesheet"  href="{% static 'jsk/css/text_to_tags.css' %}">
+<link rel ="stylesheet"  href="{% static 'jsk/css/note.css' %}">
+
+
+<div class="note" id = "note">
+    <form class="post" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div hidden>
+            {{ form.as_p }}
+        </div>
+        <a class = "I_ll_be_back" href="{% url 'jsk:file_search' %}">◀検索ページへ戻る</a>
+        <button class="save" type="submit">送信</button>
+        </form>
+        <div class="error">
+            {{ form.tag_name.errors }}
+        </div>
+    <h2 class="midasi">《文書ファイルからタグを生成》</h2>
+    <h3 class = "tag_get">文書ファイルから取得したタグ</h3>
+    <div class="get_tags_table" id="get_tags_table">
+        <div class = "get_tag_box"> 
+            <ul id="get_tags_tr"></ul>
+        </div>
+    </div>
+
+    <div class="tag_num" id="tag_num"></div>
+
+    <div class = "my_tags_table" id="my_tags_table">
+        <div class = "my_tag_box"> 
+            <ul id="my_tags_tr"></ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    var GetTagsArray = {{ get_tags_list|safe }}
+    var MyTagsArray = {{ my_tags_list|safe }}
+    function addMyTagList(num) {
+        MyTagsArray.push(GetTagsArray[num]);
+        GetTagsArray.splice(num, 1)
+        createTagList();
+    }
+    function dalMyTagList(num) {
+        GetTagsArray.push(MyTagsArray[num]);
+        MyTagsArray.splice(num, 1);
+        createTagList();
+    }
+    function createTagList(){
+        // 取得したタグの表示
+        // 配列からタグリストを作成する
+        // 一度タグリストの子要素をすべて削除
+        let get_tag_parent = document.getElementById('get_tags_tr');
+        while (get_tag_parent.lastChild) {
+            get_tag_parent.removeChild(get_tag_parent.lastChild);
+        }
+        for (var i = 0; i < GetTagsArray.length; i++) {
+            // tdタグの作成
+            var listTag = document.createElement('li');
+            listTag.id = "get_tag_" + i;
+            listTag.className = "get_tag";
+            // id=get_tags_tr の子要素として追加
+            document.getElementById('get_tags_tr').appendChild(listTag);
+
+             // タグボタンを作成
+             // inputタグの作成
+            var tag_add_btn = document.createElement('input');
+            // inputタグの値をいろいろ指定
+            tag_add_btn.setAttribute('type', 'button');
+            tag_add_btn.setAttribute('id', 'tag_add_btn');
+            tag_add_btn.setAttribute('name', i);
+            tag_add_btn.setAttribute('value', GetTagsArray[i]);
+            tag_add_btn.title = GetTagsArray[i]
+            tag_add_btn.className = "add_tag";
+            tag_add_btn.onclick = function() {
+                addMyTagList(this.name)
+            }
+            // さっき追加したtdタグの子要素として追加
+            document.getElementById('get_tag_' + i).appendChild(tag_add_btn);
+        }
+
+        // 取得したタグの表示
+        // 配列からタグリストを作成する
+        // 一度タグリストの子要素をすべて削除
+        let my_tag_parent = document.getElementById('my_tags_tr');
+        while (my_tag_parent.lastChild) {
+            my_tag_parent.removeChild(my_tag_parent.lastChild);
+        }
+        for (var i = 0; i < MyTagsArray.length; i++) {
+            // tdタグの作成
+            var listTag = document.createElement('li');
+            listTag.id = "my_tag_" + i;
+            listTag.className = "my_tag";
+            // id=my_tags_tr の子要素として追加
+            document.getElementById('my_tags_tr').appendChild(listTag);
+            // タグボタンを作成
+            // inputタグの作成
+            var tag_del_btn = document.createElement('input');
+            // inputタグの値をいろいろ指定
+            tag_del_btn.setAttribute('type', 'button');
+            tag_del_btn.setAttribute('id', 'tag_del_btn');
+            tag_del_btn.setAttribute('name', i);
+            tag_del_btn.setAttribute('value', MyTagsArray[i]);
+            tag_del_btn.title = MyTagsArray[i]
+            tag_del_btn.className = "add_tag";
+            tag_del_btn.onclick = function() {
+                dalMyTagList(this.name)
+            }
+            // さっき追加したtdタグの子要素として追加
+            document.getElementById('my_tag_' + i).appendChild(tag_del_btn);
+        }
+        // Djangoへ送る用のformに配列を追加
+        document.getElementById('id_tag_name').value = MyTagsArray;
+        document.getElementById('tag_num').innerHTML = "<h3>現在のタグの数" + MyTagsArray.length + "個</h3>";
+    }
+    window.onload = function(){
+        document.getElementById('id_tag_name').value = MyTagsArray;
+        createTagList();
+    }
+</script>
+
+{% endblock %}

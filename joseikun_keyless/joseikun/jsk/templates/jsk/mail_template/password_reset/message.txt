@@ -1,0 +1,9 @@
+{{ user.email }} 様 <br>
+
+下記URLよりサイトにアクセスの上、パスワードの再設定を行ってください。 <br>
+
+再設定用URL
+{{ protocol}}://{{ domain }}{% url 'jsk:password_reset_confirm' uid token %} <br>
+このメールに心当たりのない方は、無視してください。<br>
+
+情整君。開発チーム

@@ -1,0 +1,26 @@
+{% extends "jsk/base.html" %}
+{% block content %}
+{% load static %}
+
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <link rel ="stylesheet" 
+        href="{% static 'jsk/css/user_create_done.css' %}">
+</head>
+
+<center>
+    <h1 class="sa">無効な行動/無効なURLです</h1>
+
+    <table>
+        <p class="sb">無効なアクションが行われたのでやめましょう。<br>情整君。開発チームは見ています。 ^  ^</p>
+        {% if user.is_authenticated %}
+        <a href="{% url 'jsk:file_search' %}">検索画面へ</a>
+        {% else %}
+        <a href="{% url 'jsk:user_create_input' %}">会員登録へ</a>
+        {% endif %}
+    </table>
+</center>
+
+{% endblock %}

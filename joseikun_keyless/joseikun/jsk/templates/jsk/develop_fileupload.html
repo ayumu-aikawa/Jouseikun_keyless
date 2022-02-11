@@ -1,0 +1,42 @@
+{% extends "jsk/base.html" %}
+{% block content %}
+<p>開発用ファイルデータ登録画面</p>
+<div align="right">最終更新 2022/01/14 12:26</div>
+<p>このアカウントのユーザーIDは {{test1}} です</p>
+
+
+<form action = "{% url 'jsk:develop_fileupload_result' %}" method ="post">
+  {% csrf_token %}
+  <p>登録するユーザー(ID)
+    <input name = "user_id" type="number" value = "" min = "1" required></input>
+  </p>
+  <p>ファイル名(拡張子は4文字まで)
+    <input name = "filename" value = "" required></input>
+  </p>
+  <p>s3_file_name(空欄不可 適当にお願いします)
+    <input name = "s3_file_name" value = "" required></input>
+  </p>
+  <p>タグ(";"で区切ります 20文字以内、12個まで)
+    <input name = "tag_name" value = ""></input>
+  </p>
+  <p>更新日時
+    <input name = "update_dt" id = "now-date" type="datetime-local" step="1" value = "" required></input>
+  </p>
+  <p>最終閲覧日時
+    <input name = "last_viewed_dt" id = "now-date2" type="datetime-local" step="1" value = "" required></input>
+  </p>
+
+  <p></p>
+  <button type = "submit" class="btn btn-success" >送信</button>
+</form>
+
+<script type="text/javascript">
+window.addEventListener('load', () => {
+  const now = new Date();
+  now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+  document.getElementById('now-date').value = now.toISOString().slice(0, -5);
+  document.getElementById('now-date2').value = now.toISOString().slice(0, -5);
+});
+
+</script>
+{% endblock %}

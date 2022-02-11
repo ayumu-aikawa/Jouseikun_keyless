@@ -1,0 +1,45 @@
+<title>{{title}}｜情整君。</title>
+{% block content %}
+{% load static %}
+
+<link rel ="stylesheet" 
+    href="{% static 'jsk/css/user_create_confirm.css' %}">
+
+ <link rel ="stylesheet" 
+        href="{% static 'jsk/css/back_collar.css' %}">
+
+<hr class="kuhaku">
+
+<div class="create_confirm">
+
+<h1 class="ta">アカウント入力情報の確認</h1>
+
+    {% for field in form %}
+    <div class="di">
+        <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+        {% if field.id_for_label == 'id_password1' %}
+        {{ pass1 }}
+        {% elif field.id_for_label == 'id_password2' %}
+        {{ pass2 }}
+        {% else %}
+        {{ field.value }}
+        {% endif %}
+    </div>
+    {% endfor %}
+
+        <div class="bs">
+        <form action="{% url 'jsk:user_create_input' %}" method="POST">
+            <button class="but1" type="submit">修正</button>
+            {% for field in form %}{{ field.as_hidden }}{% endfor %}
+            {% csrf_token %}
+        </form>
+       
+        <form class="bs1" action="{% url 'jsk:user_create_done' %}" method="POST">
+            <button class="but2" type="submit">登録</button>
+            {% for field in form %}{{ field.as_hidden }}{% endfor %}
+            {% csrf_token %}
+        </form>
+        </div>
+    
+{% endblock %}
+</div>

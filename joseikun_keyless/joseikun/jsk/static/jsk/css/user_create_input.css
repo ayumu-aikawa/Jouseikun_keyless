@@ -1,0 +1,71 @@
+body{
+  background-color: var(--background-color);
+}
+
+.kuhaku{  
+  margin-bottom: 80px;
+}
+
+
+.fo1 {
+  top: 100px;
+  margin-left: 400px;
+}
+
+.lab {
+  margin: 5px;
+}
+
+.title{
+  font-size: 34px;
+  font-family: sans-serif;
+  color: var(--text_collar);
+  margin-bottom: 40px;
+  
+}
+
+
+
+
+
+
+
+.but{
+ margin-top: 10px;
+ border: 1px solid rgb(123, 122, 122);
+  background: #f1e767;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fdfbfb), to(#ebedee));
+  background: -webkit-linear-gradient(top, #fdfbfb 0%, #ebedee 100%);
+  background: linear-gradient(to bottom, #fdfbfb 0%, #ebedee 100%);
+  -webkit-box-shadow: inset 1px 1px 1px #fff;
+  box-shadow: inset 1px 1px 1px #fff;
+  border-radius: 0.1rem;
+  padding: 0.1rem 1rem;
+}
+
+.but:hover {
+  background: -webkit-gradient(linear, left bottom, left top, from(#fdfbfb), to(#ebedee));
+  background: -webkit-linear-gradient(bottom, #fdfbfb 0%, #ebedee 100%);
+  background: linear-gradient(to top, #fdfbfb 0%, #ebedee 100%);
+}
+
+.create_text {
+  font-size: 25px;
+}
+
+
+.create_tet {
+  font-size: 25px;
+}
+
+
+.top_link{
+  position: relative;
+  right: 150px;
+  top: 50px;
+  font-size: 20px;
+}
+
+/* .fo1{
+  margin-left: 300px;
+} */
